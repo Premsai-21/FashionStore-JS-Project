@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fashion Store — Premium</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a class="brand" href="#">
+          <span class="logo">Fashion<span>Store</span></span>
+        </a>
+      </div>
+
+      <nav class="nav-center" aria-label="Primary">
+        <a class="nav-link" href="#hero">Home</a>
+        <a class="nav-link" href="#products-section">Shop</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="search-wrap">
+          <input id="search" class="search" type="search" placeholder="Search products..." aria-label="Search products">
+        </div>
+
+        <div class="account-wrap">
+          <button id="account-btn" class="btn ghost">Account ▾</button>
+          <div id="account-menu" class="account-menu" aria-hidden="true">
+            <div id="account-user" class="menu-user muted">Not signed in</div>
+            <button class="menu-item" id="my-account">My Account</button>
+            <button class="menu-item" id="orders">Orders</button>
+            <button class="menu-item" id="purchases">Purchases</button>
+            <button class="menu-item" id="favorites">Favorites</button>
+            <div class="menu-sep"></div>
+            <button class="menu-item" id="logout">Logout</button>
+          </div>
+        </div>
+
+        <button id="cart-btn" class="icon-btn" aria-label="Open cart">
+          🛒 <span id="cart-count">0</span>
+        </button>
+        <button id="login-btn" class="btn primary">Sign In</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-inner hero-inner-center">
+      <div class="hero-copy">
+        <h1 class="hero-title-big">New Season Collection</h1>
+        <p class="hero-sub-big">
+          Minimal. Refined. Comfortable — curated for modern style.
+        </p>
+        <div class="hero-cta hero-cta-center">
+          <button id="hero-shop" class="btn primary glow hero-btn-big">Shop Now</button>
+          <a id="view-all" href="#products-section" class="btn ghost hero-btn-big">
+            Browse products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <section class="products-section" id="products-section">
+      <div class="section-head centered">
+        <h2>Featured Products</h2>
+        <p class="muted">Elevate your wardrobe with our curated selection.</p>
+      </div>
+      <div id="products" class="products-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="info-section">
+      <div class="info-inner">
+        <h3>About FashionStore</h3>
+        <p class="muted">
+          A curated selection of menswear — classic silhouettes with a modern twist. Designed in Hyderabad for India’s new professionals.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="info-section">
+      <div class="info-inner">
+        <h3>Contact</h3>
+        <p class="muted">
+          Reach us: <a href="mailto:premsaidonepudi58@gmail.com">premsaidonepudi58@gmail.com</a> • 9988337766
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- PRODUCT QUICK VIEW MODAL -->
+  <div id="product-modal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" id="close-modal">✕</button>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img id="modal-img" src="" alt="">
+        </div>
+        <div class="modal-info">
+          <h3 id="modal-title"></h3>
+          <p id="modal-price" class="price"></p>
+          <p id="modal-desc" class="muted small"></p>
+          <div class="modal-actions">
+            <button id="modal-fav" class="btn ghost">♡ Favorite</button>
+            <button id="modal-add" class="btn primary glow">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="modal" aria-hidden="true">
+    <div class="modal-panel cart-panel">
+      <button class="modal-close" id="close-cart">✕</button>
+      <h3>Your Cart</h3>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Total:</span>
+          <span id="cart-total">₹0</span>
+        </div>
+        <!-- TEXT CHANGED HERE -->
+        <button id="checkout-btn" class="btn primary glow">Place Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH / LOGIN MODAL -->
+  <div id="auth-modal" class="modal" aria-hidden="true">
+    <div class="modal-panel small auth-animated">
+      <button class="modal-close" id="close-auth">✕</button>
+      <div class="auth-header">
+        <h3 id="auth-title">Welcome Back</h3>
+        <p class="auth-sub">Sign in to sync your cart and favorites.</p>
+      </div>
+      <form id="auth-form" class="auth-form">
+        <div class="auth-field">
+          <label>Email</label>
+          <input id="email" type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input id="password" type="password" placeholder="••••••••" required />
+        </div>
+        <div class="auth-field">
+          <label>Phone (optional)</label>
+          <input id="phone" type="tel" placeholder="+91 9XXXXXXXXX" />
+        </div>
+        <div class="auth-row">
+          <button class="btn primary glow" type="submit">Sign in</button>
+          <button type="button" class="btn ghost" id="create-account">Create account</button>
+        </div>
+      </form>
+      <div class="auth-links">
+        <button id="quick-guest" class="link">Continue as Guest</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-center">
+        <div class="footer-brand">Fashion Store</div>
+        <div class="footer-address">
+          Hyderabad, Telangana •
+          <a href="premsaidonepudi58@gmail.com"> premsaidonepudi58@gmail.com</a> • 9988337766
+        </div>
+        <div>© 2025 FashionStore. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
